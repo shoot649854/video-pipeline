@@ -15,14 +15,13 @@ from NoiseEliminator import NoiseEliminator
 from Graph import graph
 
 input_path = glob.glob(os.path.join(PARENT_DIR, 'input', '*'))
-
 if __name__ == "__main__":
   splitter = Audio_webrtc(
     top_db=20,
   )
   eliminator = NoiseEliminator()
   audio_file_path = input_path[0]
-  output_path = "../output"
+  output_path = os.path.join(PARENT_DIR, 'output', 'row')
 
   chunks = splitter.process_audio(audio_file_path, output_path)
 
@@ -30,9 +29,9 @@ if __name__ == "__main__":
     eliminator.noise_suppression(chunk, chunk)
 
 
-  combined_audio_path = os.path.join(output_path, "combined_audio.wav")
-  combined_audio = AudioSegment.empty()
-  for chunk in chunks:
-      combined_audio += AudioSegment.from_file(chunk)
+  # combined_audio_path = os.path.join(output_path, "combined_audio.wav")
+  # combined_audio = AudioSegment.empty()
+  # for chunk in chunks:
+  #     combined_audio += AudioSegment.from_file(chunk)
 
-  combined_audio.export(combined_audio_path, format='wav')
+  # combined_audio.export(combined_audio_path, format='wav')

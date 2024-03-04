@@ -73,6 +73,7 @@ class Audio_webrtc:
 				chunk_file_path = os.path.join(output_path, f"chunk_{file_i:08}.wav")
 				chunk = voiced_audio[current_start:end]
 				write(chunk_file_path, self.sample_rate, (chunk * 32767).astype(np.int16))
+				print("File is written on " + chunk_file_path)
 				chunk_files.append(chunk_file_path)
 				current_start = None
 				file_i += 1
